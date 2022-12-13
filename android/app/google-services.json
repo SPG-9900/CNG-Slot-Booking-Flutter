@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "762809114653",
+    "project_id": "cng-slot-booking-ca519",
+    "storage_bucket": "cng-slot-booking-ca519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762809114653:android:54941634ef6d3dba5966f4",
+        "android_client_info": {
+          "package_name": "com.cngslotbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762809114653-2l3f7g6o3iv1kun4nqcdeqhk0k3oc3jv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cngslotbooking",
+            "certificate_hash": "d1b10b6489baa51f26559f16add153e52bc5f3ad"
+          }
+        },
+        {
+          "client_id": "762809114653-gph69r52jp759jd6eeelii3nihmj1qta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhG2bnhVNTeLxvcaUmQA8P9ch511aGkXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762809114653-gph69r52jp759jd6eeelii3nihmj1qta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
