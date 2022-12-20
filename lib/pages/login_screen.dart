@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:slot_booking/controller/auth_controller.dart';
-import 'package:slot_booking/pages/pages/registration_screen.dart';
+import 'package:slot_booking/pages/signup_screen.dart';
 import 'package:slot_booking/utils/mytheme.dart';
 import 'package:slot_booking/utils/social_buttons.dart';
 
@@ -251,9 +251,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 17),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => SignUpScreen()));
-                        Get.to(RegistrationScreen());
+                        Get.to(SignUpScreen());
                       },
                   ),
                   TextSpan(
