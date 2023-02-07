@@ -51,26 +51,7 @@ class ContactUsScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 240),
-              child: Text(
-                "Akshay Bhujbal - 7722036604",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 270),
-              child: Text(
-                "Ganesh Gite -9579591945",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            
             Padding(
               padding: const EdgeInsets.only(top: 330),
               child: Text(
