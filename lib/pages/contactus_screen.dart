@@ -51,7 +51,6 @@ class ContactUsScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            
             Padding(
               padding: const EdgeInsets.only(top: 330),
               child: Text(
