@@ -47,7 +47,7 @@ class ContactUsScreen extends StatelessWidget {
                 "Prathamesh Sahare - 7875926500",
                 style: TextStyle(
                     fontSize: 20,
-                    color: Colors.green,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold),
               ),
             ),
