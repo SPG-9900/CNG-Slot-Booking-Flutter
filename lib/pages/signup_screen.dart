@@ -252,13 +252,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   TextSpan(
                     text: "Already have an account? ",
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 17),
                   ),
                   TextSpan(
                     text: "Log in ",
                     style: const TextStyle(
                         decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w900,
+                        fontSize: 17),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         Navigator.pop(context);
@@ -267,7 +269,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   TextSpan(
                     text: "here",
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 17),
                   ),
                 ],
               ),
