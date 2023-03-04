@@ -127,7 +127,7 @@ class MapScreenState extends State<MapScreen> {
     );
   }
 
-  Widget _boxes(String _image, double lat, double long, String restaurantName) {
+  Widget _boxes(String _image, double lat, double long, String stationName) {
     return GestureDetector(
       onTap: () {
         _gotoLocation(lat, long);
@@ -156,7 +156,7 @@ class MapScreenState extends State<MapScreen> {
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: myDetailsContainer1(restaurantName),
+                      child: myDetailsContainer1(stationName),
                     ),
                   ),
                 ],
@@ -166,7 +166,7 @@ class MapScreenState extends State<MapScreen> {
     );
   }
 
-  Widget myDetailsContainer1(String restaurantName) {
+  Widget myDetailsContainer1(String stationName) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -174,7 +174,7 @@ class MapScreenState extends State<MapScreen> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(
               child: Text(
-            restaurantName,
+            stationName,
             style: TextStyle(
                 color: Color.fromARGB(255, 223, 18, 4),
                 fontSize: 24.0,
@@ -272,14 +272,7 @@ class MapScreenState extends State<MapScreen> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
-        markers: {
-          newyork1Marker,
-          newyork2Marker,
-          newyork3Marker,
-          gramercyMarker,
-          bernardinMarker,
-          blueMarker
-        },
+        markers: {s1Marker, s2Marker, s3Marker, s4Marker, s5Marker, blueMarker},
       ),
     );
   }
@@ -295,7 +288,7 @@ class MapScreenState extends State<MapScreen> {
   }
 }
 
-Marker gramercyMarker = Marker(
+Marker s4Marker = Marker(
   markerId: MarkerId('Om service station & CNG pump'),
   position: LatLng(19.998260077970325, 73.78160899782759),
   infoWindow: InfoWindow(title: 'Om service station & CNG pump'),
@@ -304,7 +297,7 @@ Marker gramercyMarker = Marker(
   ),
 );
 
-Marker bernardinMarker = Marker(
+Marker s5Marker = Marker(
   markerId: MarkerId('Indian OIl Petrol Pump CNG'),
   position: LatLng(19.955869666582693, 73.83657445493633),
   infoWindow: InfoWindow(title: 'Indian OIl Petrol Pump CNG'),
@@ -321,7 +314,7 @@ Marker blueMarker = Marker(
   ),
 );
 
-Marker newyork1Marker = Marker(
+Marker s1Marker = Marker(
   markerId: MarkerId('Namrata CNG Pump'),
   position: LatLng(19.95967494846619, 73.75597894084369),
   infoWindow: InfoWindow(title: 'Namrata CNG Pump'),
@@ -329,7 +322,7 @@ Marker newyork1Marker = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
-Marker newyork2Marker = Marker(
+Marker s2Marker = Marker(
   markerId: MarkerId('Hindustan Petroleum'),
   position: LatLng(19.99504701416932, 73.79558980584368),
   infoWindow: InfoWindow(title: 'Hindustan Petroleum'),
@@ -337,7 +330,7 @@ Marker newyork2Marker = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
-Marker newyork3Marker = Marker(
+Marker s3Marker = Marker(
   markerId: MarkerId('Bharat Petroleum, Petrol Pump -Vinod Automobiles'),
   position: LatLng(19.996786171024155, 73.76287221815493),
   infoWindow:
