@@ -1,128 +1,185 @@
 import 'package:flutter/material.dart';
-import 'package:booking_calendar/booking_calendar.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
-import 'package:slot_booking/utils/mytheme.dart';
-
-void main() {
-  initializeDateFormatting().then((_) => runApp(const BookingScreen()));
-}
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
 
   @override
-  State<BookingScreen> createState() => _BookingCalendarDemoAppState();
+  _SlotBookingScreenState createState() => _SlotBookingScreenState();
 }
 
-class _BookingCalendarDemoAppState extends State<BookingScreen> {
-  final now = DateTime.now();
-  late BookingService mockBookingService;
+class _SlotBookingScreenState extends State<BookingScreen> {
+  DateTime _selectedDate = DateTime.now();
 
-  @override
-  void initState() {
-    super.initState();
-    initializeDateFormatting();
-    DateTime now = DateTime.now();
-    var dateString = DateFormat('dd-MM-yyyy').format(now);
-    final String configFileName = 'lastConfig.$dateString.json';
+  final List<String> _timeSlots = [
+    '12:20 AM ',
+    '12:00 AM ',
+    '12:40 AM',
+    '1:00 AM',
+    '1:20 AM',
+    '1:40 AM',
+    '2:00 AM',
+    '2:20 AM',
+    '2:40 AM',
+    '3:00 AM',
+    '3:20 AM',
+    '3:40 AM',
+    '4:00 AM',
+    '4:20 AM',
+    '4:40 AM',
+    '5:00 AM',
+    '5:20 AM',
+    '5:40 AM',
+    '6:00 AM',
+    '6:20 AM',
+    '6:40 AM',
+    '7:00 AM',
+    '7:20 AM',
+    '7:40 AM',
+    '8:00 AM',
+    '8:20 AM',
+    '8:40 AM',
+    '9:00 AM',
+    '9:20 AM',
+    '9:40 AM',
+    '10:00 AM',
+    '10:20 AM',
+    '10:40 AM',
+    '11:00 AM',
+    '11:20 AM',
+    '11:40 AM',
+    '12:20 PM ',
+    '12:00 PM ',
+    '12:40 PM',
+    '1:00 PM',
+    '1:20 PM',
+    '1:40 PM',
+    '2:00 PM',
+    '2:20 PM',
+    '2:40 PM',
+    '3:00 PM',
+    '3:20 PM',
+    '3:40 PM',
+    '4:00 PM',
+    '4:20 PM',
+    '4:40 PM',
+    '5:00 PM',
+    '5:20 PM',
+    '5:40 PM',
+    '6:00 PM',
+    '6:20 PM',
+    '6:40 PM',
+    '7:00 PM',
+    '7:20 PM',
+    '7:40 PM',
+    '8:00 PM',
+    '8:20 PM',
+    '8:40 PM',
+    '9:00 PM',
+    '9:20 PM',
+    '9:40 PM',
+    '10:00 PM',
+    '10:20 PM',
+    '10:40 PM',
+    '11:00 PM',
+    '11:20 PM',
+    '11:40 PM',
+  ];
+  int _selectedSlotIndex = -1;
 
-    mockBookingService = BookingService(
-        serviceName: 'CNG',
-        serviceDuration: 20,
-        bookingEnd: DateTime(now.year, now.month, now.day, 24, 0),
-        bookingStart: DateTime(now.year, now.month, now.day, 1, 0));
-  }
-
-  Stream<dynamic>? getBookingStreamMock(
-      {required DateTime end, required DateTime start}) {
-    return Stream.value([]);
-  }
-
-  Future<dynamic> uploadBookingMock(
-      {required BookingService newBooking}) async {
-    await Future.delayed(const Duration(seconds: 1));
-    converted.add(DateTimeRange(
-        start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    print('${newBooking.toJson()} has been uploaded');
-  }
-
-  List<DateTimeRange> converted = [];
-
-  List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
-    ///here you can parse the streamresult and convert to [List<DateTimeRange>]
-    ///take care this is only mock, so if you add today as disabledDays it will still be visible on the first load
-    ///disabledDays will properly work with real data
-    DateTime first = now;
-    DateTime second = now.add(const Duration(minutes: 55));
-    DateTime third = now.subtract(const Duration(minutes: 240));
-    DateTime fourth = now.subtract(const Duration(minutes: 500));
-    converted.add(
-        DateTimeRange(start: first, end: now.add(const Duration(minutes: 30))));
-    converted.add(DateTimeRange(
-        start: second, end: second.add(const Duration(minutes: 23))));
-    converted.add(DateTimeRange(
-        start: third, end: third.add(const Duration(minutes: 15))));
-    converted.add(DateTimeRange(
-        start: fourth, end: fourth.add(const Duration(minutes: 50))));
-    return converted;
-  }
-
-  List<DateTimeRange> generatePauseSlots() {
-    return [
-      DateTimeRange(
-          start: DateTime(now.year, now.month, now.day, 12, 0),
-          end: DateTime(now.year, now.month, now.day, 13, 0))
-    ];
-  }
+  bool _isLoading = false; // Boolean variable to track loading state
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Booking CNG',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Slot Booking'),
+        automaticallyImplyLeading: false,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: MyTheme.appBarColor,
-          title: const Text('Booking CNG slot'),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: BookingCalendar(
-            bookedSlotColor: Colors.red,
-            availableSlotColor: Colors.green.shade500,
-            selectedSlotColor: Colors.orange,
-            bookingService: mockBookingService,
-            convertStreamResultToDateTimeRanges: convertStreamResultMock,
-            getBookingStream: getBookingStreamMock,
-            uploadBooking: uploadBookingMock,
-            pauseSlots: generatePauseSlots(),
-            pauseSlotColor: Colors.grey.shade600,
-            pauseSlotText: 'LUNCH',
-            hideBreakTime: false,
-            loadingWidget: const Text('Loading Data...'),
-            uploadingWidget: const CircularProgressIndicator(),
-            locale: 'English',
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            disabledDays: const [],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 250,
+            child: CalendarDatePicker(
+              initialDate: _selectedDate,
+              firstDate: DateTime.now(),
+              lastDate: DateTime.now().add(Duration(days: 30)),
+              onDateChanged: (date) {
+                setState(() {
+                  _selectedDate = date;
+                  _selectedSlotIndex =
+                      -1; // Reset selected slot index for new date
+                });
+              },
+            ),
           ),
-        ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              itemCount: _timeSlots.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedSlotIndex = index; // Update selected slot index
+                    });
+                  },
+                  child: ClipOval(
+                    child: Container(
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: _selectedSlotIndex == index
+                            ? Colors.orange // Color for selected slot
+                            : Colors.green, // Color for unselected slots
+                      ),
+                      child: Center(
+                        child: Text(
+                          _timeSlots[index],
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: ElevatedButton(
+                onPressed: _selectedSlotIndex == -1 || _isLoading
+                    ? null // Disable button if no slot is selected or if loading is in progress
+                    : () async {
+                        setState(() {
+                          _isLoading = true; // Set loading state to true
+                        });
+                        // Implement logic for button press here
+                        await Future.delayed(const Duration(
+                            seconds: 3)); // Simulate some processing time
+                        setState(() {
+                          _isLoading = false; // Set loading state back to false
+                        });
+                      },
+                child: _isLoading
+                    ? const CircularProgressIndicator() // Show loading circle if loading is in progress
+                    : const Text(
+                        'Book Selected Slot',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
-
-  // Future<dynamic> uploadBookingFirebase(
-  //     {required BookingService newBooking}) async {
-  //   await bookings()
-  //       .doc('your id, or autogenerate')
-  //       .collection('bookings')
-  //       .add(newBooking.toJson())
-  //       .then((value) => print("Booking Added"))
-  //       .catchError((error) => print("Failed to add booking: $error"));
-  // }
-
-  // bookings() {}
 }
