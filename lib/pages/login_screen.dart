@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 22, 131, 232),
+      backgroundColor: const Color.fromARGB(255, 22, 131, 232),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.email,
                           color: Colors.black,
                         ),
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: MyTheme.greyColor,
                         filled: true,
                       ),
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   Padding(
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                           color: Colors.black,
                         ),
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: MyTheme.greyColor,
                         filled: true,
                       ),
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   Align(
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Get.back();
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 22, 131, 232),
+                              primary: const Color.fromARGB(255, 22, 131, 232),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           passwordController.text.trim());
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 22, 131, 232),
+                      primary: const Color.fromARGB(255, 22, 131, 232),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -238,10 +238,9 @@ class _LoginScreenState extends State<LoginScreen> {
             RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "Don't have an account? ",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 17),
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
                   ),
                   TextSpan(
                     text: "Sign up ",
@@ -251,13 +250,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 17),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Get.to(SignUpScreen());
+                        Get.to(const RegistrationScreen());
                       },
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: "here",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 17),
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
                   ),
                 ],
               ),

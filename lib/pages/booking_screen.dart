@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slot_booking/pages/invoice_screen.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
@@ -151,20 +152,35 @@ class _SlotBookingScreenState extends State<BookingScreen> {
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
                 onPressed: _selectedSlotIndex == -1 || _isLoading
-                    ? null // Disable button if no slot is selected or if loading is in progress
+                    ? null
                     : () async {
                         setState(() {
                           _isLoading = true; // Set loading state to true
                         });
                         // Implement logic for button press here
-                        await Future.delayed(const Duration(
-                            seconds: 3)); // Simulate some processing time
+                        await Future.delayed(const Duration(seconds: 3));
+
                         setState(() {
                           _isLoading = false; // Set loading state back to false
                         });
+
+                        if (!_isLoading) {
+                          // Navigate to InvoiceScreen after loading is complete
+                          // ignore: use_build_context_synchronously
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InvoiceScreen(
+                                selectedTimeSlot:
+                                    _timeSlots[_selectedSlotIndex],
+                                selectedDate: _selectedDate,
+                              ),
+                            ),
+                          );
+                        }
                       },
                 child: _isLoading
-                    ? const CircularProgressIndicator() // Show loading circle if loading is in progress
+                    ? const CircularProgressIndicator()
                     : const Text(
                         'Book Selected Slot',
                         style: TextStyle(fontSize: 20),
